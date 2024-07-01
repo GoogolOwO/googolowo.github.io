@@ -17,13 +17,33 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                <input type="text" class="form-control" placeholder="页面">
+                <input type="text" class="form-control" placeholder="页面" v-model="page">
             </div>
             <div class="col">
-                <input type="text" class="form-control" placeholder="密钥">
+                <input type="text" class="form-control" placeholder="密钥" v-model="password">
             </div>
         </div>
+        您得到的加密结果：<a target="_blank" :href="result">{{result}}</a>
     </div>
 </body>
 <script src="https://fastly.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script src="https://fastly.jsdelivr.net/npm/js-md5@0.8.3/build/md5.min.js"></script>
+<script>
+    const {createApp, ref, computed} = Vue;
+    let salt = "doy"+"beabletoENCYpt"+"sbr"+"eset"+"_chan!!";
+    createApp({
+        setup() {
+            const page = ref('');
+            const password = ref('');
+            const result = computed(() => {
+                return md5(window.salt + page + '&' + (password ?? "anti-vandalism by cmd") + "%%%%%Powered by Googol");
+            });
+            return {
+                message,
+                password
+            }
+        }
+    }).mount('#app');
+</script>
 </html>
