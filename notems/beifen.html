@@ -37,7 +37,7 @@
             const page = ref('');
             const password = ref('');
             const result = computed(() => {
-                return md5(window.salt + page + '&' + (password ?? "anti-vandalism by cmd") + "%%%%%Powered by Googol");
+                return md5(window.salt + page.value + '&' + (password.value ?? "anti-vandalism by cmd") + "%%%%%Powered by Googol");
             });
             return {
                 page,
