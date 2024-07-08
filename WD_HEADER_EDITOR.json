@@ -1,0 +1,65 @@
+{
+	"request": [
+		{
+			"enable": true,
+			"name": "Wikidot自动切换HTTPS",
+			"ruleType": "redirect",
+			"matchType": "prefix",
+			"pattern": "http://d3g0gp89917ko0.cloudfront.net/",
+			"exclude": "",
+			"group": "Wikidot",
+			"isFunction": true,
+			"action": "redirect",
+			"to": "https://d3g0gp89917ko0.cloudfront.net/",
+			"code": "var res = val.replace(\"http\", \"https\");\nreturn res;"
+		},
+		{
+			"enable": true,
+			"name": "阻止被墙Font Awesome请求拖慢网站速度",
+			"ruleType": "cancel",
+			"matchType": "url",
+			"pattern": "https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css",
+			"exclude": "",
+			"group": "Wikidot",
+			"isFunction": false,
+			"action": "cancel"
+		},
+		{
+			"enable": true,
+			"name": "阻止XSS漏洞（1）",
+			"ruleType": "cancel",
+			"matchType": "url",
+			"pattern": "https://deepforest-club.eu.org/count.js",
+			"exclude": "",
+			"group": "Wikidot",
+			"isFunction": false,
+			"action": "cancel"
+		},
+		{
+			"enable": true,
+			"name": "头像CDN设置HTTPS",
+			"ruleType": "redirect",
+			"matchType": "prefix",
+			"pattern": "http://d2qhngyckgiutd.cloudfront.net",
+			"exclude": "",
+			"group": "Wikidot",
+			"isFunction": true,
+			"code": "return val.replace(\"http\",\"https\");"
+		}
+	],
+	"sendHeader": [
+		{
+			"enable": true,
+			"name": "wikidot主域名强制使用https",
+			"ruleType": "modifySendHeader",
+			"matchType": "prefix",
+			"pattern": "http://www.wikidot.com",
+			"exclude": "",
+			"group": "Wikidot",
+			"isFunction": true,
+			"code": "var res = val.replace(\"http\", \"https\");\nreturn res;"
+		}
+	],
+	"receiveHeader": [],
+	"receiveBody": []
+}
